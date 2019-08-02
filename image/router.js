@@ -10,4 +10,15 @@ router.get('/image', (request, response,next)=>{
         })
         .catch(console.error)
 })
+
+router.post('/image', (request, response,next)=>{
+    console.log('REQUEST_BODY',request.body)
+    Image
+        .create({
+            url: request.body.url,
+            title: request.body.title,
+        })
+        .then(image => response.send(image))
+        .catch(next)
+})
 module.exports=router
