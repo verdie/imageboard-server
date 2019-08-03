@@ -1,5 +1,6 @@
 const Image = require ('./model')
 const { Router } = require('express');
+const auth = require('../auth/middleware')
 const router = new Router()
 
 router.get('/image', (request, response,next)=>{
@@ -11,7 +12,7 @@ router.get('/image', (request, response,next)=>{
         .catch(console.error)
 })
 
-router.post('/image', (request, response,next)=>{
+router.post('/image', auth , (request, response,next)=>{
     console.log('REQUEST_BODY',request.body)
     Image
         .create({
